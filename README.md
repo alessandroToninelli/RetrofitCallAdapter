@@ -1,4 +1,4 @@
-# Kotlin-Retrofit-NetworkCallAdapter
+# Kotlin-Retrofit-CallAdapter
 Adapter for Retrofit written in Kotlin. Adapter usable with Kotlin coroutines
 
 Usage
