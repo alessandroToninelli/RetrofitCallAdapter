@@ -68,7 +68,7 @@ publishing {
             artifact(tasks["sourceJar"])
             pom {
                 name.set(rootProject.name)
-                url.set("https://github.com/alessandroToninelli/Kotlin-Retrofit-NetworkCallAdapter")
+                url.set("https://github.com/alessandroToninelli/RetrofitCallAdapter")
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
@@ -82,7 +82,7 @@ publishing {
                     }
                 }
                 scm {
-                    url.set("https://github.com/alessandroToninelli/Kotlin-Retrofit-NetworkCallAdapter")
+                    url.set("https://github.com/alessandroToninelli/RetrofitCallAdapter")
                 }
             }
         }
