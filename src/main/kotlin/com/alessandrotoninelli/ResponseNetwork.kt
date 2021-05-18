@@ -12,7 +12,7 @@ sealed class ResponseNetwork<out S : Any, out E : Any> {
         fun create(error: Throwable): ResponseNetwork<Nothing, Nothing> {
             return when (error) {
                 is IOException -> ResponseNetworkIOFailure(error)
-                else -> ResponseNetworkUnknownError(null, error)
+                else -> ResponseNetworkUnknownError(-1, error.localizedMessage)
             }
         }
 
@@ -36,7 +36,7 @@ sealed class ResponseNetwork<out S : Any, out E : Any> {
 
                 errorBody?.let { ResponseNetworkError(code, it) } ?: ResponseNetworkUnknownError(
                     code,
-                    Exception(response.raw().message())
+                    response.raw().message()
                 )
 
             }
@@ -60,6 +60,6 @@ data class ResponseNetworkError<E : Any>(
 data class ResponseNetworkIOFailure(val error: Throwable) :
     ResponseNetwork<Nothing, Nothing>()
 
-data class ResponseNetworkUnknownError(val code: Int?, val error: Throwable?) :
+data class ResponseNetworkUnknownError(val code: Int, val msg: String) :
     ResponseNetwork<Nothing, Nothing>()
 
