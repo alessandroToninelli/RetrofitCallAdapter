@@ -34,7 +34,7 @@ sealed class ResponseNetwork<out S : Any, out E : Any> {
                     else -> kotlin.runCatching { converter.convert(error) }.getOrNull()
                 }
 
-                errorBody?.let { ResponseNetworkError(code, it) } ?: ResponseNetworkUnknownError(
+                errorBody?.let { ResponseNetworkUserError(code, it) } ?: ResponseNetworkHttpError(
                     code,
                     response.raw().message()
                 )
@@ -52,10 +52,15 @@ data class ResponseNetworkSuccess<S : Any>(
 
 data class ResponseNetworkSuccessEmpty(val code: Int) : ResponseNetwork<Nothing, Nothing>()
 
-data class ResponseNetworkError<E : Any>(
+data class ResponseNetworkUserError<E : Any>(
     val code: Int,
     val body: E
 ) : ResponseNetwork<Nothing, E>()
+
+data class ResponseNetworkHttpError(
+    val code: Int,
+    val msg: String
+) : ResponseNetwork<Nothing, Nothing>()
 
 data class ResponseNetworkIOFailure(val error: Throwable) :
     ResponseNetwork<Nothing, Nothing>()

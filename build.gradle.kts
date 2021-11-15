@@ -3,6 +3,7 @@ import java.util.Date
 import kotlin.io.println
 import java.util.Properties
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import java.net.URI
 
 plugins {
     kotlin("jvm") version "1.5.0"
@@ -31,7 +32,6 @@ tasks.withType<Jar>{
     archiveVersion.set("")
     archiveClassifier.set("")
 }
-
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"

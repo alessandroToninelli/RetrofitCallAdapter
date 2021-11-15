@@ -1,7 +1,9 @@
 package com.alessandrotoninelli
 
 
+import okhttp3.Request
 import okhttp3.ResponseBody
+import okio.Timeout
 import retrofit2.*
 import java.lang.UnsupportedOperationException
 import java.lang.reflect.ParameterizedType
@@ -82,7 +84,7 @@ internal class ResponseNetworkCall<S : Any, E : Any>(
        throw UnsupportedOperationException("Response network doesn't support execute")
     }
 
-    override fun request() = proxy.request()
-    override fun timeout() = proxy.timeout()
+    override fun request(): Request = proxy.request()
+    override fun timeout(): Timeout = proxy.timeout()
 
 }
